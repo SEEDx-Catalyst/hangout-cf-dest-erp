@@ -1,0 +1,55 @@
+<mvc:View
+	controllerName="Quickstart.App"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout">
+	<App>
+		<Page title="Hangout #1 2021 Sample CF App for Destinations + B1/ByD">
+		<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+        <l:HorizontalLayout class="sapUiContentPadding" >
+		<Button
+				text="Northwind GET Products"
+				press=".onPress"/>
+        <Button
+            text="B1 POST Login"
+            press=".onB1Login"
+            type="Emphasized"/>
+		<Button
+            text="B1 GET Items"
+            press=".onB1GetItems"
+            type="Emphasized"/>
+		<Button
+            text="ByD POST Service Request"
+            press=".onByDServiceRequest"
+            type="Emphasized"/>
+            </l:HorizontalLayout>
+			<MessageStrip
+			showIcon="true"
+			type="Warning"
+			text="Make sure you've setup all the required destinations in SAP BTP. Refer to README.MD"/>
+			<TextArea id="output" placeholder="Output will be shown here..." growing="true" growingMaxLines="7" width="100%"/>
+			<MessageStrip
+			showIcon="true"
+			text="Below Todo: Improvise values from below to pass it to your API."/>
+			<l:HorizontalLayout class="sapUiContentPadding" >
+			<Input
+			value="CP100110"
+			description="Service Request Sender"
+			width="100%"
+			fieldWidth="50%"/>
+			<Input
+			value="Hangout Test Service Request."
+			description="Service Request Message"
+			width="100%"
+			fieldWidth="50%"/>
+			
+			</l:HorizontalLayout>
+					</l:content>
+	</l:VerticalLayout>
+		</Page>
+	</App>
+</mvc:View>

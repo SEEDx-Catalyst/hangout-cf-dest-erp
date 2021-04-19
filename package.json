@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "express": "latest",
+    "axios": "latest",
+    "@sap/xsenv": "latest",
+    "request": "latest"
+  }
+}
