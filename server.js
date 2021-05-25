@@ -1,19 +1,23 @@
 /*** This is a sample app of how you can work with SAP BTP's destination service on a microservice app
- * Base sample app taken from: https://github.com/saphanaacademy/scpapps
+ * Base sample app taken from: https://github.com/saphanaacademy/scpapps/blob/master/myappdest/
  * Full BTP Onboarding tutorial can be found here: https://www.youtube.com/playlist?list=PLkzo92owKnVw3l4fqcLoQalyFi9K4-UdY
  * 
- * Topic: Application Development | SAP Extension Suite use case for B1/ByD
+ * Topic: Application Development | SAP Extension Suite use case for B1/ByD/S4
  * 
  * Objective of this sample app: 
+ * - 1 floor level structure of fiori app x nodejs x microservices x cf env
  * - Breakdown understanding of cloud foundry app. 
  * - To get SAP BTP destination to work within the app. 
  * - Without storing credentials on app level.
  * 
  * Pre-requisite of this sample app:
- * - Northwind/B1/ByD Destination has been setup.
+ * - Northwind/B1/ByD/S4 Destination has been setup.
  * - Bind Destination service to the app.
  * 
  * [SAMPLE APP FEATURES]
+ * S4 Functions:
+ * - Get 10 Sales Orders
+ * 
  * B1 Functions:
  * - Login
  * - Get Items Master Data
@@ -93,6 +97,41 @@ app.get('/', function (req, res) {
      * 
      * Todo: Check all endpoint is working and valid.
      */
+});
+/***
+ * S4 Function to get 10 Sales Orders.
+ */
+app.get('/s4', function (req, res) {
+    getDestination('S4_JT').then(dest => {
+        // result contains the destination information for use in REST calls
+        // res.status(200).json(result.URL);
+        var nw = dest.destinationConfiguration;
+        console.log(nw.URL);
+        var auth = "Basic " + dest.authTokens[0].value;
+        const options = {
+            method: "GET",
+            url: nw.URL + "/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$format=json&$top=10",
+            headers: {
+                "Authorization": auth
+            },
+        };
+
+        request.get(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // console.log("make req: " + body)
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200);
+                res.send(response.body);
+
+            } else {
+                /*  console.error("make req failed. \n" + error)
+                console.log("[ERROR] Error in Callback");
+                console.log("RESPONSE " + response.statusCode);
+                console.log("BODY " + JSON.stringify(body));    */
+                res.status(500);
+            }
+        });
+    });
 });
 
 app.get('/byd', function (req, res) {

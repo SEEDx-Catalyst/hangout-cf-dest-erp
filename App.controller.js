@@ -57,6 +57,19 @@ sap.ui.define([
                 console.log(response);
                 txtAreaControl.setValue(JSON.stringify(response));
 			});
+        },
+        onS4ServiceRequest : function () {
+            MessageToast.show("Get Items Request in S4!");
+            var settings = {
+				"url": "/s4",
+				"method": "GET"
+			};
+			var txtAreaControl = this.byId("output");
+
+			$.ajax(settings).done(function (response) {
+                console.log(response);
+                txtAreaControl.setValue(JSON.stringify(response));
+			});
 		}
 	});
 
