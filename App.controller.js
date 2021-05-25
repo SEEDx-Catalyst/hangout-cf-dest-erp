@@ -59,7 +59,7 @@ sap.ui.define([
 			});
         },
         onS4ServiceRequest : function () {
-            MessageToast.show("Get Items Request in S4!");
+            MessageToast.show("Get Top 10 Sales Orders in S4!");
             var settings = {
 				"url": "/s4",
 				"method": "GET"
