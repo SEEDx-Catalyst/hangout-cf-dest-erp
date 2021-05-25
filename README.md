@@ -51,7 +51,11 @@ Password: <your password>
 ### References
 This app is a combination of NodeJS + SAPUI5 QuickStart App.
 NodeJS App just run the command to create a NodeJS app with the simple structure and continue development with the JS file.
-npm init
+Command: npm init
 
 SAPUI5 Sample App Structure
 https://sapui5.hana.ondemand.com/#/topic/128214a9b2754b15aec5e365780b03fd
+
+### Other Resources
+* - https://github.com/Ralphive/cfDestinations
+* - https://github.com/saphanaacademy/scpapps
